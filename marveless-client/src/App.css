@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:300,400,700&display=swap');
@@ -13,7 +14,10 @@
 /* Globals */
 body {
   font-family: 'Roboto Condensed', sans-serif;
-  background-color: rgb(58, 119, 180);
+  /* background-color: rgb(58, 119, 180); */
+  background-image: url("https://www.elsetge.cat/myimg/f/127-1271808_deadpool-and-galactus-wallpaper-marvel-comics-space-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 a:link,
@@ -37,26 +41,37 @@ a:active {
 /* Character Search Page */
 /* Character Search Page */
 /* Character Search Page */
-.jumbotron {
+/* .jumbotron {
   background-color: #151515;
-}
+} */
 
-.header-main-title {
+/* .header-main-title {
   color: #fff;
-}
+} */
 
-.character-search-box,
+/* .character-search-box,
 .search-character-button {
   border-radius: 0;
-}
+} */
 
-.search-character-button {
+/* .search-character-button {
   background-color: #ED462F;
 }
 
 #characterMainTitle,
 #comicMainTitle {
   color: #FFFFFF;
+} */
+
+.header {
+  background: #151515;
+
+}
+
+.character-comic-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
 }
 
 .character-container {
@@ -64,16 +79,67 @@ a:active {
   flex-flow: wrap;
   justify-content: space-evenly;
   border: 2px solid black;
-  /* width: 30%; */
-  /* margin: 0 auto */
+  width: 35%;
+  height: 35em;
+  overflow: scroll;
+  align-items: center;
+  align-content: space-between;
+  margin: 10px
+}
+
+.comic-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  border: 2px solid black;
+  width: 35%;
+  height: 35em;
+  overflow: scroll;
+  align-items: center;
+  align-content: space-between;
+  margin: 10px
+}
+
+.comic-show-page-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  border: 2px solid black;
+  width: 35%;
+  height: 35em;
+  overflow: scroll;
+  align-items: center;
+  align-content: space-between;
+  margin: 10px
 }
 
 .character-card {
-  border: 3px solid red;
+  border: 1px solid rgb(241, 202, 202);
   border-radius: 2px;
-  height: 10%;
-  width: 30%
+  cursor: pointer;
+  /* height: 10%;
+  width: 30% */
 }
+
+.comic-card {
+  border: 1px solid rgb(241, 202, 202);
+  border-radius: 2px;
+  cursor: pointer;
+
+  /* height: 10%;
+  width: 30% */
+}
+
+.character-name {
+  background: black;
+  color: white
+}
+
+.comic-title {
+  background: black;
+  color: white
+}
+
 
 .title {
   background-color: #DC061F;
@@ -82,8 +148,9 @@ a:active {
   width: 10rem;
   margin: auto;
   text-align: center;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   /* vertical-align: middle */
+
 }
 
 /* Single Comic Page */
