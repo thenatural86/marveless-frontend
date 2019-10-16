@@ -9,7 +9,8 @@ import Login from "./components/Login"
 import Welcome from "./components/Welcome"
 import badRoute from "./components/badRoute"
 import UserCharacterContainer from "./containers/UserCharacterContainer"
-import AllUserCharacters from "./containers/AlUserCharacters"
+import AllUserCharactersContainer from "./containers/AlUserCharactersContainer"
+import HeaderContainer from "./containers/HeaderContainer"
 
 class App extends React.Component {
   state = {
@@ -121,13 +122,33 @@ class App extends React.Component {
         this.setState({ userCharacters: data })
       })
   }
+  showAllUserCharactersHandler = () => {
+    console.log("show me the money")
+    fetch("http://localhost:3000/api/v1/user_characters", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json"
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        // console.log(data)
+        this.setState({ allUserCharacters: data })
+      })
+  }
 
   render() {
+    // console.log(this.state.allUserCharacters)
     // console.log("state user:", this.state.user)
-    console.log("userCharacters STATE:", this.state.userCharacters)
+    // console.log("userCharacters STATE:", this.state.userCharacters)
     return (
       <div className="App">
-        <div className="header">
+        <div className="header-container">
+          <HeaderContainer
+            user={this.state.user}
+            showHandler={this.showAllUserCharactersHandler}
+          />
           <div className="title">
             <h1>MarveLess</h1>
           </div>
@@ -165,6 +186,7 @@ class App extends React.Component {
         <div className="comic-container">
           {this.state.comics.length !== 0 ? (
             <ComicContainer
+              user={this.state.user}
               comics={this.state.comics}
               clickHandler={this.comicClickHandler}
             />
@@ -174,6 +196,7 @@ class App extends React.Component {
         {this.state.comicPage.length !== 0 ? (
           <div className="comic-show-page-container">
             <ComicShowPageContainer
+              user={this.state.user}
               comicPage={this.state.comicPage}
               clickHandler={this.creatorClickHandler}
             />
@@ -183,13 +206,14 @@ class App extends React.Component {
         {this.state.userCharacters.length !== 0 ? (
           <div className="user-characters-container">
             <UserCharacterContainer
+              user={this.state.user}
               userCharacters={this.state.userCharacters}
             />
           </div>
         ) : null}
 
         <div className="all-user-character">
-          <AllUserCharacters
+          <AllUserCharactersContainer
             user={this.state.user}
             allUserCharacters={this.state.allUserCharacters}
           />
