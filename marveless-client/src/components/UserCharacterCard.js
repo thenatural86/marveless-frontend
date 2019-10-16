@@ -1,7 +1,7 @@
-import React from "react"
+// import React from "react"
 
-const UserCharacterCard = props => {
-  console.log(props)
-}
+// const UserCharacterCard = props => {
+//   console.log(props)
+// }
 
-export default UserCharacterCard
+// export default UserCharacterCard

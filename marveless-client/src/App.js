@@ -9,13 +9,15 @@ import Login from "./components/Login"
 import Welcome from "./components/Welcome"
 import badRoute from "./components/badRoute"
 import UserCharacterContainer from "./containers/UserCharacterContainer"
+import AllUserCharacters from "./containers/AlUserCharacters"
 
 class App extends React.Component {
   state = {
     comics: [],
     comicPage: [],
     user: {},
-    userCharacters: []
+    userCharacters: [],
+    allUserCharacters: []
   }
 
   componentDidMount() {
@@ -121,7 +123,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("state user:", this.state.user)
+    // console.log("state user:", this.state.user)
     console.log("userCharacters STATE:", this.state.userCharacters)
     return (
       <div className="App">
@@ -144,7 +146,7 @@ class App extends React.Component {
             <Route
               path="/characters"
               render={routerProps => {
-                console.log("Router Props in Render:", routerProps)
+                // console.log("Router Props in Render:", routerProps)
                 return (
                   <CharacterContainer
                     user={this.state.user}
@@ -179,12 +181,19 @@ class App extends React.Component {
         ) : null}
 
         {this.state.userCharacters.length !== 0 ? (
-          <div className="user-characters">
+          <div className="user-characters-container">
             <UserCharacterContainer
               userCharacters={this.state.userCharacters}
             />
           </div>
         ) : null}
+
+        <div className="all-user-character">
+          <AllUserCharacters
+            user={this.state.user}
+            allUserCharacters={this.state.allUserCharacters}
+          />
+        </div>
       </div>
     )
   }

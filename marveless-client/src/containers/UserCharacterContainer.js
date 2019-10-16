@@ -1,14 +1,18 @@
 import React from "react"
-import UserCharacterCard from "../components/UserCharacterCard"
 
 const UserCharacterContainer = props => {
   console.log(props.userCharacters.character)
 
   return (
     <div>
-      User Character
-      {props.userCharacters.character.name}
-      <img alt="" src={props.userCharacters.character.image} />
+      <h3>Added User Character Container</h3>
+      <div className="user-character-name">
+        Name:{props.userCharacters.character.name}
+      </div>
+      <div className="user-character-image">
+        <img alt="" src={props.userCharacters.character.image} />
+      </div>
+      <div>{props.userCharacters.character.description}</div>
     </div>
   )
 }

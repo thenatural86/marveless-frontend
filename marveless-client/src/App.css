@@ -119,6 +119,32 @@ a:active {
   margin: 10px
 }
 
+.user-characters-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  border: 2px solid black;
+  width: 35%;
+  height: 35em;
+  overflow: scroll;
+  align-items: center;
+  align-content: space-between;
+  margin: 10px
+}
+
+.all-user-character {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  border: 2px solid black;
+  width: 35%;
+  height: 35em;
+  overflow: scroll;
+  align-items: center;
+  align-content: space-between;
+  margin: 10px
+}
+
 .character-card {
   border: 1px solid rgb(241, 202, 202);
   border-radius: 2px;
