@@ -13,10 +13,10 @@ const ComicCard = props => {
             "." +
             props.comic.thumbnail.extension
           }
-          onClick={() => props.clickHandler(props.comic)}
         />
       </div>
       <div className="comic-title">{props.comic.title}</div>
+      <button onClick={() => props.clickHandler(props.comic)}>Get Info</button>
     </div>
   )
 }

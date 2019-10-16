@@ -1,19 +1,55 @@
 import React from "react"
 import CharacterCard from "../components/CharacterCard"
+import SearchForm from "../components/SearchForm"
 
-const CharacterContainer = props => {
-  // console.log(props.characters)
+class CharacterContainer extends React.Component {
+  state = { characters: [], searchTerm: "" }
 
-  let characters = props.filterCharacterList().map(character => {
-    return (
-      <CharacterCard
-        key={character.id}
-        character={character}
-        clickHandler={props.clickHandler}
-      />
+  componentDidMount() {
+    fetch("http://localhost:3000/api/v1/characters")
+      .then(resp => resp.json())
+      .then(data => {
+        // console.log(data)
+        this.setState({ characters: data })
+      })
+  }
+
+  // SearchForm CallBack
+  changeHandler = e => {
+    console.log("change")
+    this.setState({ searchTerm: e.target.value })
+  }
+
+  filterCharacterList = () => {
+    return this.state.characters.filter(character =>
+      character.name.toUpperCase().includes(this.state.searchTerm.toUpperCase())
     )
-  })
-  return <div className="character-container">{characters}</div>
-}
+  }
 
+  render() {
+    // console.log(this.props)
+    let characters = this.filterCharacterList().map(character => {
+      return (
+        <CharacterCard
+          key={character.id}
+          character={character}
+          clickHandler={this.props.clickHandler}
+          user={this.props.user}
+          addToTeam={this.props.addToTeam}
+        />
+      )
+    })
+    return (
+      <div className="characters">
+        <SearchForm
+          searchTerm={this.state.searchTerm}
+          changeHandler={this.changeHandler}
+          // submitHandler={props.submitHandler}
+        />
+        <h1>Characters</h1>
+        {characters}
+      </div>
+    )
+  }
+}
 export default CharacterContainer

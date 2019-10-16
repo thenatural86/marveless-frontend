@@ -14,7 +14,7 @@ const ComicShowPageContainer = props => {
   })
   return (
     <div>
-      Comic Show Page Container
+      <h1>Comic Show Page Container</h1>
       {comicShowPageCards}
     </div>
   )
