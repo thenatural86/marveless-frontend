@@ -82,7 +82,8 @@ a:active {
 
 .character-container {
   display: flex;
-  flex-flow: wrap;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
   justify-content: space-evenly;
   border: 2px solid black;
   width: 45%;
@@ -134,6 +135,7 @@ a:active {
 
 .all-user-character {
   display: flex;
+  flex-direction: row;
   flex-flow: wrap;
   justify-content: space-evenly;
   border: 2px solid black;
@@ -141,8 +143,8 @@ a:active {
   height: 35em;
   overflow: scroll;
   align-items: center;
-  align-content: space-between;
-  margin: 10px
+  /* align-content: space-around; */
+  margin: 10px;
 }
 
 .character-card {
@@ -160,6 +162,17 @@ a:active {
 
   /* height: 10%;
   width: 30% */
+}
+
+.all-user-character-card {
+  /* display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-evenly; */
+  border: 1px solid rgb(241, 202, 202);
+  border-radius: 2px;
+  cursor: pointer;
+  width: auto
 }
 
 .character-name {

@@ -2,7 +2,7 @@ import React from "react"
 import ComicCard from "../components/ComicCard"
 
 const ComicContainer = props => {
-  console.log(props)
+  // console.log(props)
   let comics = props.comics.data.results.map(comic => {
     return (
       <ComicCard

@@ -9,7 +9,7 @@ const CharacterCard = props => {
         <img alt="" src={props.character.image} />
       </div>
       <div className="character-name">{props.character.name}</div>
-      <div className="character-description">{props.character.description}</div>
+      {/* <div className="character-description">{props.character.description}</div> */}
       <button onClick={() => props.clickHandler(props.character)}>
         Get Comics
       </button>

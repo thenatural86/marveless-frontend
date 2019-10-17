@@ -2,7 +2,7 @@ import React from "react"
 import AllUserCharacterCard from "../components/AllUserCharacterCard"
 
 const AllUserCharactersContainer = props => {
-  console.log(props.allUserCharacters)
+  // console.log(props.allUserCharacters)
   let squad = props.allUserCharacters.map(character => {
     return <AllUserCharacterCard key={character.id} character={character} />
   })

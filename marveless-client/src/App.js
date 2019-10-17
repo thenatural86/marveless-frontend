@@ -18,7 +18,9 @@ class App extends React.Component {
     comicPage: [],
     user: {},
     userCharacters: [],
-    allUserCharacters: []
+    allUserCharacters: [],
+    squadUp: false,
+    showComics: false
   }
 
   componentDidMount() {
@@ -78,13 +80,14 @@ class App extends React.Component {
   }
   // CharacterCard Component CallBack
   clickHandler = characterObj => {
-    console.log("CHARACTER OBJECT:", characterObj)
+    // console.log("CHARACTER OBJECT:", characterObj)
     fetch(`
     https://gateway.marvel.com/v1/public/characters/${characterObj.marvelid}/comics?ts=1&apikey=50265fe0032e30bc7011bf3ef16ffd9b&hash=d4e5c40fc9d222d34bfdbf5ed7858ade`)
       .then(resp => resp.json())
       .then(data => {
         // console.log("hello")
         this.setState({ comics: data })
+        this.setState({ showComics: !this.state.showComics })
       })
   }
   // ComicCard CallBack
@@ -123,7 +126,7 @@ class App extends React.Component {
       })
   }
   showAllUserCharactersHandler = () => {
-    console.log("show me the money")
+    // console.log("show me the money")
     fetch("http://localhost:3000/api/v1/user_characters", {
       method: "GET",
       headers: {
@@ -134,11 +137,13 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then(data => {
         // console.log(data)
+        this.setState({ squadUp: !this.state.squadUp })
         this.setState({ allUserCharacters: data })
       })
   }
 
   render() {
+    console.log(this.state.showComics)
     // console.log(this.state.allUserCharacters)
     // console.log("state user:", this.state.user)
     // console.log("userCharacters STATE:", this.state.userCharacters)
@@ -167,7 +172,7 @@ class App extends React.Component {
             <Route
               path="/characters"
               render={routerProps => {
-                // console.log("Router Props in Render:", routerProps)
+                console.log("Router Props in Render:", routerProps)
                 return (
                   <CharacterContainer
                     user={this.state.user}
@@ -183,15 +188,17 @@ class App extends React.Component {
           <Route component={badRoute} />
         </Switch>
 
-        <div className="comic-container">
-          {this.state.comics.length !== 0 ? (
-            <ComicContainer
-              user={this.state.user}
-              comics={this.state.comics}
-              clickHandler={this.comicClickHandler}
-            />
-          ) : null}
-        </div>
+        {this.state.showComics ? (
+          <div className="comic-container">
+            {this.state.comics.length !== 0 ? (
+              <ComicContainer
+                user={this.state.user}
+                comics={this.state.comics}
+                clickHandler={this.comicClickHandler}
+              />
+            ) : null}
+          </div>
+        ) : null}
 
         {this.state.comicPage.length !== 0 ? (
           <div className="comic-show-page-container">
@@ -212,12 +219,15 @@ class App extends React.Component {
           </div>
         ) : null}
 
-        <div className="all-user-character">
-          <AllUserCharactersContainer
-            user={this.state.user}
-            allUserCharacters={this.state.allUserCharacters}
-          />
-        </div>
+        {this.state.squadUp ? (
+          <div className="all-user-character">
+            <AllUserCharactersContainer
+              // squadUp={this.state.squadUp}
+              user={this.state.user}
+              allUserCharacters={this.state.allUserCharacters}
+            />
+          </div>
+        ) : null}
       </div>
     )
   }

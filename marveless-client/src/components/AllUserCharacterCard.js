@@ -1,14 +1,12 @@
 import React from "react"
 
 const AllUserCharacterCard = props => {
-  console.log(props.character.character)
+  // console.log(props.character.character)
   return (
-    <>
-      <div>
-        <img alt="" src={props.character.character.image} />
-      </div>
+    <div className="all-user-character-card">
+      <img alt="" src={props.character.character.image} />
       <div>{props.character.character.name}</div>
-    </>
+    </div>
   )
 }
 
