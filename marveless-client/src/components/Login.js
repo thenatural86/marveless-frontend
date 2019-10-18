@@ -19,14 +19,14 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="center">
         <h1>Login Form</h1>
         <form onSubmit={this.submitHandler}>
           <input type="text" name="username" onChange={this.changeHandler} />
           <input type="text" name="password" onChange={this.changeHandler} />
           <input type="submit" value="log in" />
         </form>
-      </>
+      </div>
     )
   }
 }

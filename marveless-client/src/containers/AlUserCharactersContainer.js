@@ -7,10 +7,10 @@ const AllUserCharactersContainer = props => {
     return <AllUserCharacterCard key={character.id} character={character} />
   })
   return (
-    <h2>
-      My Squad
-      {squad}
-    </h2>
+    <div>
+      <button onClick={props.squadDown}>Squad Down!</button>
+      <div className="all-user-character">{squad}</div>
+    </div>
   )
 }
 

@@ -9,7 +9,7 @@ const ComicCard = props => {
           alt=""
           src={
             props.comic.thumbnail.path +
-            "/portrait_fantastic" +
+            "/portrait_uncanny" +
             "." +
             props.comic.thumbnail.extension
           }

@@ -27,7 +27,7 @@ class CharacterContainer extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     let characters = this.filterCharacterList().map(character => {
       return (
         <CharacterCard
@@ -40,14 +40,29 @@ class CharacterContainer extends React.Component {
       )
     })
     return (
-      <div className="characters">
+      <div className="CharacterSearchAndContainer">
+        {/* <h1>Characters</h1> */}
         <SearchForm
           searchTerm={this.state.searchTerm}
           changeHandler={this.changeHandler}
           // submitHandler={props.submitHandler}
         />
-        <h1>Characters</h1>
-        {characters}
+        {/* 
+        <button
+          style={{ width: "5%" }}
+          onClick={this.props.closeCharacterContainer}
+        >
+          X
+        </button> */}
+        <div className="character-container">
+          <button
+            className="character-container-close"
+            onClick={this.props.closeCharacterContainer}
+          >
+            X
+          </button>
+          {characters}
+        </div>
       </div>
     )
   }

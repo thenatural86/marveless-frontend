@@ -11,22 +11,26 @@ import badRoute from "./components/badRoute"
 import UserCharacterContainer from "./containers/UserCharacterContainer"
 import AllUserCharactersContainer from "./containers/AlUserCharactersContainer"
 import HeaderContainer from "./containers/HeaderContainer"
+import CharacterOfTheDayContainer from "./containers/CharacterOfTheDayContainer"
 
 class App extends React.Component {
   state = {
     comics: [],
     comicPage: [],
-    user: {},
+    user: null,
     userCharacters: [],
     allUserCharacters: [],
     squadUp: false,
-    showComics: false
+    showComics: false,
+    characterDay: [],
+    showCharacters: false
   }
 
   componentDidMount() {
     // console.log("App props:", this.props)
     let token = localStorage.getItem("token")
     if (token) {
+      let targetPath = this.props.location.pathname
       fetch("http://localhost:3000/api/v1/profile", {
         method: "GET",
         headers: {
@@ -36,7 +40,12 @@ class App extends React.Component {
         }
       })
         .then(resp => resp.json())
-        .then(data => this.setState({ user: data.user }))
+        .then(data =>
+          this.setState({ user: data.user }, () => {
+            // console.log("target path: ", targetPath)
+            this.props.history.push(targetPath)
+          })
+        )
     }
   }
   // CallBack by Signup component
@@ -78,6 +87,13 @@ class App extends React.Component {
         this.props.history.push("/characters")
       })
   }
+
+  logoutUser = () => {
+    console.log("logout")
+    localStorage.clear()
+    window.location.href = "/login"
+  }
+
   // CharacterCard Component CallBack
   clickHandler = characterObj => {
     // console.log("CHARACTER OBJECT:", characterObj)
@@ -87,13 +103,16 @@ class App extends React.Component {
       .then(data => {
         // console.log("hello")
         this.setState({ comics: data })
-        this.setState({ showComics: !this.state.showComics })
+        if (this.state.showComics === false) {
+          this.setState({ showComics: !this.state.showComics })
+        }
       })
   }
   // ComicCard CallBack
   comicClickHandler = comicObj => {
     if (!this.state.comicPage.includes(comicObj)) {
       this.setState({ comicPage: [comicObj] })
+      this.setState({ showComics: !this.state.showComics })
     }
   }
   // SearchForm CallBack
@@ -142,21 +161,90 @@ class App extends React.Component {
       })
   }
 
+  closeComicShowPage = () => {
+    console.log("close")
+    this.setState({ comicPage: [] })
+    this.setState({ showComics: !this.state.showComics })
+  }
+
+  closeComicContainer = () => {
+    console.log("close button")
+    this.setState({ showComics: !this.state.showComics })
+  }
+
+  closeUserCharacterContainer = () => {
+    console.log("close er down")
+    this.setState({ userCharacters: [] })
+  }
+
+  closeCharacterContainer = () => {
+    console.log("close charcters")
+    this.setState({ showCharacters: !this.state.showCharacters })
+  }
+
+  closeCharacterOfTheDay = () => {
+    console.log("close character day")
+    this.setState({ characterDay: [] })
+  }
+
+  squadDown = () => {
+    console.log("squad down")
+    this.setState({ squadUp: !this.state.squadUp })
+  }
+
+  goHome = () => {
+    console.log("take em home")
+    window.location.href = "/"
+  }
+
+  goToCharacters = () => {
+    console.log("go to characters")
+    window.location.href = "/characters"
+  }
+
+  characterOfTheDay = () => {
+    let number = Math.floor(Math.random() * 1491) + 1
+    console.log("lets get a random character", number)
+    fetch(`http://localhost:3000/api/v1/characters/${number}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json"
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        // console.log(data)
+        this.setState({ characterDay: [data] })
+      })
+  }
+
+  comicOfTheDayHandler = () => {
+    console.log("Lets get a comic")
+  }
+
   render() {
-    console.log(this.state.showComics)
+    console.log(this.state.showCharacters)
+    // console.log(this.state.characterDay)
+    // console.log(this.state.showComics)
     // console.log(this.state.allUserCharacters)
     // console.log("state user:", this.state.user)
     // console.log("userCharacters STATE:", this.state.userCharacters)
     return (
       <div className="App">
+        {/* <div className="title">
+          <h1>MarveLess</h1>
+        </div> */}
         <div className="header-container">
           <HeaderContainer
             user={this.state.user}
             showHandler={this.showAllUserCharactersHandler}
+            logoutUser={this.logoutUser}
+            characterOfTheDay={this.characterOfTheDay}
+            goHome={this.goHome}
+            goToCharacters={this.goToCharacters}
+            comicDay={this.comicOfTheDayHandler}
           />
-          <div className="title">
-            <h1>MarveLess</h1>
-          </div>
         </div>
         <Switch>
           <Route
@@ -167,37 +255,43 @@ class App extends React.Component {
             path="/login"
             render={() => <Login loginUser={this.loginUser} />}
           />
+          {/* {this.state.showCharacters ? (): null} */}
 
-          <div className="character-container">
-            <Route
-              path="/characters"
-              render={routerProps => {
-                console.log("Router Props in Render:", routerProps)
-                return (
-                  <CharacterContainer
-                    user={this.state.user}
-                    clickHandler={this.clickHandler}
-                    addToTeam={this.addToTeam}
-                  />
-                )
-              }}
-            />
-          </div>
-
-          <Route exact path="/" component={Welcome} />
+          <Route
+            path="/characters"
+            render={routerProps => {
+              // console.log("Router Props in Render:", routerProps)
+              return (
+                <CharacterContainer
+                  user={this.state.user}
+                  clickHandler={this.clickHandler}
+                  addToTeam={this.addToTeam}
+                  closeCharacterContainer={this.closeCharacterContainer}
+                />
+              )
+            }}
+          />
+          <Route
+            exact
+            path="/"
+            render={routerProps => {
+              return <Welcome user={this.state.user} />
+            }}
+          />
           <Route component={badRoute} />
         </Switch>
 
         {this.state.showComics ? (
-          <div className="comic-container">
+          <>
             {this.state.comics.length !== 0 ? (
               <ComicContainer
                 user={this.state.user}
                 comics={this.state.comics}
                 clickHandler={this.comicClickHandler}
+                closeComic={this.closeComicContainer}
               />
             ) : null}
-          </div>
+          </>
         ) : null}
 
         {this.state.comicPage.length !== 0 ? (
@@ -205,7 +299,7 @@ class App extends React.Component {
             <ComicShowPageContainer
               user={this.state.user}
               comicPage={this.state.comicPage}
-              clickHandler={this.creatorClickHandler}
+              clickHandler={this.closeComicShowPage}
             />
           </div>
         ) : null}
@@ -215,18 +309,28 @@ class App extends React.Component {
             <UserCharacterContainer
               user={this.state.user}
               userCharacters={this.state.userCharacters}
+              clickHandler={this.closeUserCharacterContainer}
             />
           </div>
         ) : null}
 
         {this.state.squadUp ? (
-          <div className="all-user-character">
-            <AllUserCharactersContainer
-              // squadUp={this.state.squadUp}
-              user={this.state.user}
-              allUserCharacters={this.state.allUserCharacters}
-            />
-          </div>
+          <AllUserCharactersContainer
+            // squadUp={this.state.squadUp}
+            user={this.state.user}
+            allUserCharacters={this.state.allUserCharacters}
+            squadDown={this.squadDown}
+          />
+        ) : null}
+
+        {this.state.characterDay.length !== 0 ? (
+          <CharacterOfTheDayContainer
+            characterDay={this.state.characterDay}
+            user={this.state.user}
+            clickHandler={this.clickHandler}
+            addToTeam={this.addToTeam}
+            closeCharacterOfTheDay={this.closeCharacterOfTheDay}
+          />
         ) : null}
       </div>
     )

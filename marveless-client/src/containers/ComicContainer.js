@@ -2,7 +2,7 @@ import React from "react"
 import ComicCard from "../components/ComicCard"
 
 const ComicContainer = props => {
-  // console.log(props)
+  console.log(props)
   let comics = props.comics.data.results.map(comic => {
     return (
       <ComicCard
@@ -15,10 +15,14 @@ const ComicContainer = props => {
 
   // problem is not that the array is empty but that the object being passed down to the comic container is undefined on initial render
   return (
-    <div>
-      <h1>Comics</h1>
-      {comics}
-    </div>
+    <>
+      <div className="comic-container">
+        <button className="comic-container-close" onClick={props.closeComic}>
+          X
+        </button>
+        {comics}
+      </div>
+    </>
   )
 }
 

@@ -15,7 +15,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="center">
         <h1>Signup Form</h1>
         <form onSubmit={this.submitHandler}>
           <input
