@@ -40,29 +40,16 @@ class CharacterContainer extends React.Component {
       )
     })
     return (
-      <div className="CharacterSearchAndContainer">
+      <div>
+        {/* className="CharacterSearchAndContainer" */}
         {/* <h1>Characters</h1> */}
         <SearchForm
           searchTerm={this.state.searchTerm}
           changeHandler={this.changeHandler}
           // submitHandler={props.submitHandler}
         />
-        {/* 
-        <button
-          style={{ width: "5%" }}
-          onClick={this.props.closeCharacterContainer}
-        >
-          X
-        </button> */}
-        <div className="character-container">
-          <button
-            className="character-container-close"
-            onClick={this.props.closeCharacterContainer}
-          >
-            X
-          </button>
-          {characters}
-        </div>
+
+        <div className="character-container">{characters}</div>
       </div>
     )
   }

@@ -20,7 +20,6 @@ const ComicShowPageContainer = props => {
       >
         X
       </button>
-      <h1>Comic Show Page Container</h1>
       {comicShowPageCards}
     </div>
   )

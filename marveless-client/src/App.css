@@ -15,10 +15,10 @@
 /* Globals */
 body {
   font-family: 'Roboto Condensed', sans-serif;
-  /* background-color: rgb(58, 119, 180); */
-  background-image: url("https://www.elsetge.cat/myimg/f/127-1271808_deadpool-and-galactus-wallpaper-marvel-comics-space-background.jpg");
+  background-color: rgb(206, 206, 206);
+  /* background-image: url("https://www.elsetge.cat/myimg/f/127-1271808_deadpool-and-galactus-wallpaper-marvel-comics-space-background.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 button {
@@ -36,7 +36,8 @@ a:visited {
 img:hover,
 img:active {
   color: white;
-  background-color: #ED462F;
+  /* background-color: #ED462F; */
+  background-color: lightblue;
   box-shadow: 0 1rem 2rem rgba(black, .4);
   transform: rotate(4deg) scale(1.1);
   padding: 2px;
@@ -58,38 +59,32 @@ img:active {
   /* background-size: cover */
 }
 
-.welcome {
-  /* display: inline-block; */
-}
-
-/* .character-comic-container {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-evenly;
-} */
-
 .character-container {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  border: 50px solid red;
-  height: 35em;
+  justify-content: space-around;
+  border: 15px solid black;
   overflow: scroll;
   align-items: center;
   align-content: flex-start;
-  margin: 10px;
-  position: relative;
+  right: 400px;
+  /* margin: 10px; */
+  position: absolute;
+  height: 670px;
+  width: 350px;
+  margin-right: 660px
 }
 
-.CharacterSearchAndContainer {
+/* .CharacterSearchAndContainer {
   display: flex;
   flex-direction: column;
   width: 40%;
+  margin-right: 70%;
   margin-top: 10px;
   justify-content: space-around;
   overflow: scroll;
-}
+} */
 
 /* .CharacterSearchAndContainer button {
   width: 50%
@@ -98,17 +93,18 @@ img:active {
 .comic-container {
   display: flex;
   flex-flow: wrap;
-  /* flex-direction: row; */
+  flex-direction: row;
   justify-content: space-around;
-  border: 50px solid purple;
-  width: 40%;
-  height: 35em;
+  /* border: 5px solid black; */
+  width: 60%;
+  height: 44em;
   overflow: scroll;
-  align-items: center;
-  align-content: space-between;
-  margin: 10px;
-  margin-top: 40px;
-  position: relative;
+  margin-left: 600px
+    /* align-items: center;
+  align-content: space-between; */
+    /* margin: 10px; */
+    /* margin-top: 40px; */
+    /* position: relative; */
 }
 
 .comic-container-close {
@@ -128,13 +124,14 @@ img:active {
   display: flex;
   flex-flow: wrap;
   justify-content: space-evenly;
-  border: 50px solid navajowhite;
   width: 35%;
-  height: 35em;
+  height: 43em;
   overflow: scroll;
   align-items: center;
   align-content: space-between;
-  margin: 10px
+  margin-left: 600px;
+  box-shadow: 5px 10px 8px black;
+
 }
 
 .comic-show-page-container-button {
@@ -201,6 +198,8 @@ img:active {
   /* border: 1px solid rgb(241, 202, 202); */
   border-radius: 2px;
   cursor: pointer;
+  box-shadow: 5px 10px 8px black;
+  margin-bottom: 25px;
 
   /* height: 10%;
   width: 30% */
@@ -228,7 +227,7 @@ img:active {
 .comic-title {
   background: black;
   color: white;
-  width: 168px
+  width: 300px
 }
 
 
@@ -255,6 +254,7 @@ img:active {
 
   font-weight: bold;
   background: rgba(246, 244, 237, 0.603);
+  text-align: left;
 }
 
 .comic-description {

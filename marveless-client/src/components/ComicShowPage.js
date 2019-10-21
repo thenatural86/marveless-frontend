@@ -9,7 +9,9 @@ const ComicShowPage = props => {
   let creator = props.comic.creators.items.map(creator => creator.resourceURI)
   return (
     <div>
-      <div className="comic-title">{props.comic.title}</div>
+      <div className="comic-title" style={{ marginLeft: "102spx" }}>
+        {props.comic.title}
+      </div>
       <div className="comic-image">
         <img
           alt=""
@@ -22,13 +24,12 @@ const ComicShowPage = props => {
         />
       </div>
       <div>
-        <div className="comic-characters">Characters: {characters}</div>
-        <div
-          className="comic-creators"
-          onClick={() => props.clickHandler(creator)}
-        >
-          Creators: {creators}
+        <div className="comic-characters">
+          Characters: {characters.join(", ")}
         </div>
+        <br />
+        <div className="comic-creators">Creators: {creators}</div>
+        <br />
         <div className="comic-description">
           Synopsis: {props.comic.description}
         </div>

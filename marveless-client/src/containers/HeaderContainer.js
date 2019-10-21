@@ -11,6 +11,7 @@ const HeaderContainer = props => {
       <button onClick={props.comicDay}>Comic of the Day</button>
       <button onClick={props.characterOfTheDay}>Character of the Day</button>
       <button onClick={props.goToCharacters}>Character List</button>
+      <button onClick={props.playGame}>Play a Game</button>
     </div>
   )
 }

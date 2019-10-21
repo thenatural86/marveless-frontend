@@ -12,6 +12,7 @@ import UserCharacterContainer from "./containers/UserCharacterContainer"
 import AllUserCharactersContainer from "./containers/AlUserCharactersContainer"
 import HeaderContainer from "./containers/HeaderContainer"
 import CharacterOfTheDayContainer from "./containers/CharacterOfTheDayContainer"
+import ComicOfTheDayContainer from "./containers/ComicOfTheDayContainer"
 
 class App extends React.Component {
   state = {
@@ -23,7 +24,9 @@ class App extends React.Component {
     squadUp: false,
     showComics: false,
     characterDay: [],
-    showCharacters: false
+    showCharacters: false,
+    comicDay: [],
+    error: null
   }
 
   componentDidMount() {
@@ -220,11 +223,47 @@ class App extends React.Component {
   }
 
   comicOfTheDayHandler = () => {
-    console.log("Lets get a comic")
+    let number = Math.floor(Math.random() * 45557) + 1
+    this.fetchHelperHandler(number)
+  }
+
+  fetchHelperHandler = number => {
+    fetch(
+      `https://gateway.marvel.com/v1/public/comics/${number}?ts=1&apikey=50265fe0032e30bc7011bf3ef16ffd9b&hash=d4e5c40fc9d222d34bfdbf5ed7858ade`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json"
+        }
+      }
+    )
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data)
+        if (data.code === 404) {
+          console.log("trying again")
+          let newNumber = Math.floor(Math.random() * 45557) + 1
+          this.fetchHelperHandler(newNumber)
+        } else {
+          this.setState({ comicDay: data })
+        }
+      })
+  }
+
+  playGameHandler = () => {
+    let arr = []
+    // let number = Math.floor(Math.random() * 1491) + 1
+
+    for (let i = 0; i < 5; i++) {
+      arr.push(Math.floor(Math.random() * 20) + 1)
+    }
+    // console.log(arr)
   }
 
   render() {
-    console.log(this.state.showCharacters)
+    // console.log(this.state.comicDay)
+    // console.log(this.state.showCharacters)
     // console.log(this.state.characterDay)
     // console.log(this.state.showComics)
     // console.log(this.state.allUserCharacters)
@@ -244,8 +283,10 @@ class App extends React.Component {
             goHome={this.goHome}
             goToCharacters={this.goToCharacters}
             comicDay={this.comicOfTheDayHandler}
+            playGame={this.playGameHandler}
           />
         </div>
+
         <Switch>
           <Route
             path="/signup"
@@ -332,16 +373,13 @@ class App extends React.Component {
             closeCharacterOfTheDay={this.closeCharacterOfTheDay}
           />
         ) : null}
+
+        {this.state.comicDay.length !== 0 ? (
+          <ComicOfTheDayContainer comicDay={this.state.comicDay} />
+        ) : null}
       </div>
     )
   }
 }
 
 export default withRouter(App)
-
-// creatorClickHandler = creatorObj => {
-//   console.log("creator click", creatorObj)
-//   creatorObj.map(creator => {
-//   return console.log(creator)
-//   })
-// }
