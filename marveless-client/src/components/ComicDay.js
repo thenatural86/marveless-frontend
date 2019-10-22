@@ -1,7 +1,7 @@
 import React from "react"
 
 const ComicDay = props => {
-  console.log(props.comic)
+  // console.log(props.comic)
 
   let creatorsName = props.comic.creators.items.map(creator => {
     return creator.name
@@ -11,7 +11,7 @@ const ComicDay = props => {
   })
   // let creatorRole = props.comic.creators.items.map(creator => creator.role)
   return (
-    <div>
+    <div className="comic-day-card">
       <h2>{props.comic.title}</h2>
       <img
         alt=""

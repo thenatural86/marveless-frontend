@@ -14,14 +14,12 @@ const CharacterOfTheDayContainer = props => {
     )
   })
   return (
-    <div className="character-day-container">
-      <button
-        className="character-day-container-button"
-        onClick={props.closeCharacterOfTheDay}
-      >
-        X
-      </button>
-      {char}
+    <div
+      id="character-day-container"
+      onClick={props.closeCharacterOfTheDay}
+      className="slideExpandUp"
+    >
+      <div className="character-day-char">{char}</div>
     </div>
   )
 }

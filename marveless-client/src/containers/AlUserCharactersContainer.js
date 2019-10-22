@@ -8,8 +8,12 @@ const AllUserCharactersContainer = props => {
   })
   return (
     <div>
-      <button onClick={props.squadDown}>Squad Down!</button>
-      <div className="all-user-character">{squad}</div>
+      <div id="all-user-character" className="bigEntrance">
+        {squad}
+      </div>
+      <button className="all-user-char-button" onClick={props.squadDown}>
+        Squad Down!
+      </button>
     </div>
   )
 }

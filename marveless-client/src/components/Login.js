@@ -20,12 +20,20 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="center">
-        <h1>Login Form</h1>
+        <h1>Login</h1>
         <form onSubmit={this.submitHandler}>
           <input type="text" name="username" onChange={this.changeHandler} />
           <input type="text" name="password" onChange={this.changeHandler} />
           <input type="submit" value="log in" />
         </form>
+        <iframe
+          // id="myVideo"
+          title="spider"
+          src="https://giphy.com/embed/9tZc9Mzo9K0yOYx38U"
+          width="700"
+          height="700"
+          frameBorder="0"
+        ></iframe>
       </div>
     )
   }

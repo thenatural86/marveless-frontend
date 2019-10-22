@@ -12,17 +12,7 @@ const ComicShowPageContainer = props => {
       />
     )
   })
-  return (
-    <div>
-      <button
-        className="comic-show-page-container-button"
-        onClick={props.clickHandler}
-      >
-        X
-      </button>
-      {comicShowPageCards}
-    </div>
-  )
+  return <div onClick={props.clickHandler}>{comicShowPageCards}</div>
 }
 
 export default ComicShowPageContainer

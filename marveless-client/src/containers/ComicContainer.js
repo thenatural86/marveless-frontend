@@ -16,10 +16,7 @@ const ComicContainer = props => {
   // problem is not that the array is empty but that the object being passed down to the comic container is undefined on initial render
   return (
     <>
-      <div className="comic-container">
-        <button className="comic-container-close" onClick={props.closeComic}>
-          X
-        </button>
+      <div className="comic-container" onClick={props.closeComic}>
         {comics}
       </div>
     </>

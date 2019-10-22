@@ -13,6 +13,7 @@ import AllUserCharactersContainer from "./containers/AlUserCharactersContainer"
 import HeaderContainer from "./containers/HeaderContainer"
 import CharacterOfTheDayContainer from "./containers/CharacterOfTheDayContainer"
 import ComicOfTheDayContainer from "./containers/ComicOfTheDayContainer"
+import MemoryGameContainer from "./containers/Game/MemoryGameContainer"
 
 class App extends React.Component {
   state = {
@@ -24,9 +25,10 @@ class App extends React.Component {
     squadUp: false,
     showComics: false,
     characterDay: [],
-    showCharacters: false,
     comicDay: [],
-    error: null
+    showCharacters: false,
+    error: null,
+    game: false
   }
 
   componentDidMount() {
@@ -93,7 +95,9 @@ class App extends React.Component {
 
   logoutUser = () => {
     console.log("logout")
-    localStorage.clear()
+    localStorage.removeItem("token")
+    this.setState({ user: "" })
+    this.setState({ allUserCharacters: [] })
     window.location.href = "/login"
   }
 
@@ -161,6 +165,9 @@ class App extends React.Component {
         // console.log(data)
         this.setState({ squadUp: !this.state.squadUp })
         this.setState({ allUserCharacters: data })
+        this.setState({ comicDay: [] })
+        this.setState({ characterDay: [] })
+        this.setState({ game: false })
       })
   }
 
@@ -188,6 +195,11 @@ class App extends React.Component {
   closeCharacterOfTheDay = () => {
     console.log("close character day")
     this.setState({ characterDay: [] })
+  }
+
+  closeComicOfTheDayContainerHandler = () => {
+    console.log("close me")
+    this.setState({ comicDay: [] })
   }
 
   squadDown = () => {
@@ -219,12 +231,18 @@ class App extends React.Component {
       .then(data => {
         // console.log(data)
         this.setState({ characterDay: [data] })
+        this.setState({ game: false })
+        this.setState({ squadUp: false })
+        this.setState({ comicDay: [] })
       })
   }
 
   comicOfTheDayHandler = () => {
     let number = Math.floor(Math.random() * 45557) + 1
     this.fetchHelperHandler(number)
+    this.setState({ characterDay: [] })
+    this.setState({ game: false })
+    this.setState({ squadUp: false })
   }
 
   fetchHelperHandler = number => {
@@ -252,21 +270,26 @@ class App extends React.Component {
   }
 
   playGameHandler = () => {
-    let arr = []
-    // let number = Math.floor(Math.random() * 1491) + 1
-
-    for (let i = 0; i < 5; i++) {
-      arr.push(Math.floor(Math.random() * 20) + 1)
-    }
-    // console.log(arr)
+    // console.log("playtime")
+    // fetch("http://localhost:4000/cartoons")
+    //   .then(resp => resp.json())
+    //   .then(data => {
+    //     // console.log(data)
+    //     this.setState({ cards: data })
+    //   })
+    this.setState({ game: !this.state.game })
+    this.setState({ squadUp: false })
+    this.setState({ comicDay: [] })
+    this.setState({ characterDay: [] })
   }
 
   render() {
+    // console.log(this.state.memory)
     // console.log(this.state.comicDay)
     // console.log(this.state.showCharacters)
     // console.log(this.state.characterDay)
     // console.log(this.state.showComics)
-    // console.log(this.state.allUserCharacters)
+    console.log("characters:", this.state.allUserCharacters)
     // console.log("state user:", this.state.user)
     // console.log("userCharacters STATE:", this.state.userCharacters)
     return (
@@ -375,7 +398,17 @@ class App extends React.Component {
         ) : null}
 
         {this.state.comicDay.length !== 0 ? (
-          <ComicOfTheDayContainer comicDay={this.state.comicDay} />
+          <ComicOfTheDayContainer
+            comicDay={this.state.comicDay}
+            user={this.state.user}
+            clickHandler={this.closeComicOfTheDayContainerHandler}
+          />
+        ) : null}
+
+        {this.state.game ? (
+          <>
+            <MemoryGameContainer user={this.state.user} />
+          </>
         ) : null}
       </div>
     )

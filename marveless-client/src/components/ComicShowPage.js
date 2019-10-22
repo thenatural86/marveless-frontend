@@ -6,12 +6,10 @@ const ComicShowPage = props => {
   let creators = props.comic.creators.items
     .map(creator => creator.name)
     .join(" , ")
-  let creator = props.comic.creators.items.map(creator => creator.resourceURI)
+  // let creator = props.comic.creators.items.map(creator => creator.resourceURI)
   return (
     <div>
-      <div className="comic-title" style={{ marginLeft: "102spx" }}>
-        {props.comic.title}
-      </div>
+      <div className="comic-title">{props.comic.title}</div>
       <div className="comic-image">
         <img
           alt=""

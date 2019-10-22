@@ -27,7 +27,7 @@ class CharacterContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     let characters = this.filterCharacterList().map(character => {
       return (
         <CharacterCard
@@ -48,8 +48,15 @@ class CharacterContainer extends React.Component {
           changeHandler={this.changeHandler}
           // submitHandler={props.submitHandler}
         />
-
-        <div className="character-container">{characters}</div>
+        <div>
+          <div
+            id="character-container"
+            // className="character-container"
+            className="fadeIn"
+          >
+            {characters}
+          </div>
+        </div>
       </div>
     )
   }
