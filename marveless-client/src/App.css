@@ -84,9 +84,9 @@ img:active {
   right: 400px;
   /* margin: 10px; */
   position: absolute;
-  height: 820px;
+  height: 91.8%;
   width: 380px;
-  margin-right: 660px;
+  margin-right: 1140px;
   visibility: hidden;
 }
 
@@ -135,13 +135,19 @@ img:active {
   flex-flow: wrap;
   justify-content: space-evenly;
   width: 35em;
-  height: 42em;
-  overflow: scroll;
+  height: auto;
+  /* overflow: scroll; */
   align-items: center;
   align-content: space-between;
   margin-left: 600px;
   box-shadow: 5px 10px 8px black;
   background: honeydew;
+}
+
+.comic-showpage-text {
+  /* color: red; */
+  padding: 10px;
+  padding-bottom: 10px;
 }
 
 .comic-show-page-container-button {
@@ -329,14 +335,25 @@ img:active {
 
 }
 
-#myVideo {
+#welcomeVideo {
   position: fixed;
   right: 0;
   bottom: 0;
-  width: 100%;
-  height: 70%;
-  margin-bottom: 1px;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 9;
 
+}
+
+.background {
+  background-image: url("https://media.giphy.com/media/9tZc9Mzo9K0yOYx38U/giphy.gif");
+  width: 150%;
+  height: 100%;
+  background-size: cover;
+  position: fixed;
+  top: 70px;
+  left: -400px;
+  z-index: -1
 }
 
 /* 

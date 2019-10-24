@@ -57,14 +57,18 @@ class LoginForm extends React.Component {
             style={{ width: "400px" }}
           />
         </form>
-        <iframe
-          id="myVideo"
-          title="spider"
-          src="https://giphy.com/embed/9tZc9Mzo9K0yOYx38U "
-          width="700"
-          height="700"
-          frameBorder="0"
-        ></iframe>
+
+        <div>
+          {/* <video
+            autoPlay
+            muted
+            loop
+            id="welcomeVideo"
+            src="https://media.giphy.com/media/9tZc9Mzo9K0yOYx38U/giphy.gif"
+            type="video/mp4"
+          /> */}
+        </div>
+        <div className="background"></div>
       </div>
     )
   }

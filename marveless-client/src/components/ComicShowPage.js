@@ -19,9 +19,10 @@ const ComicShowPage = props => {
             "." +
             props.comic.thumbnail.extension
           }
+          style={{ marginTop: "15px" }}
         />
       </div>
-      <div>
+      <div className="comic-showpage-text">
         <div className="comic-characters">
           CHARACTERS: {characters.join(", ")}
         </div>
