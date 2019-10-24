@@ -70,6 +70,7 @@ class App extends React.Component {
       .then(data => {
         localStorage.setItem("token", data.token)
         this.setState({ user: data.user })
+        this.props.history.push("/characters")
       })
   }
   // CallBack by Login component
@@ -108,15 +109,22 @@ class App extends React.Component {
     https://gateway.marvel.com/v1/public/characters/${characterObj.marvelid}/comics?ts=1&apikey=50265fe0032e30bc7011bf3ef16ffd9b&hash=d4e5c40fc9d222d34bfdbf5ed7858ade`)
       .then(resp => resp.json())
       .then(data => {
-        // console.log("hello")
+        console.log("hello")
         this.setState({ comics: data })
         if (this.state.showComics === false) {
           this.setState({ showComics: !this.state.showComics })
+          this.setState({ squadUp: false })
+          this.setState({ comicDay: [] })
+          this.setState({ characterDay: [] })
+          this.setState({ game: false })
+          this.setState({ comicPage: [] })
+          this.setState({ userCharacters: [] })
         }
       })
   }
   // ComicCard CallBack
   comicClickHandler = comicObj => {
+    console.log("heloo")
     if (!this.state.comicPage.includes(comicObj)) {
       this.setState({ comicPage: [comicObj] })
       this.setState({ showComics: !this.state.showComics })
@@ -149,6 +157,12 @@ class App extends React.Component {
       .then(data => {
         console.log(data)
         this.setState({ userCharacters: data })
+        this.setState({ comicDay: [] })
+        this.setState({ characterDay: [] })
+        this.setState({ game: false })
+        this.setState({ showComics: false })
+        this.setState({ comicPage: [] })
+        this.setState({ squadUp: false })
       })
   }
   showAllUserCharactersHandler = () => {
@@ -168,6 +182,9 @@ class App extends React.Component {
         this.setState({ comicDay: [] })
         this.setState({ characterDay: [] })
         this.setState({ game: false })
+        this.setState({ showComics: false })
+        this.setState({ comicPage: [] })
+        this.setState({ userCharacters: [] })
       })
   }
 
@@ -234,6 +251,9 @@ class App extends React.Component {
         this.setState({ game: false })
         this.setState({ squadUp: false })
         this.setState({ comicDay: [] })
+        this.setState({ showComics: false })
+        this.setState({ comicPage: [] })
+        this.setState({ userCharacters: [] })
       })
   }
 
@@ -243,6 +263,9 @@ class App extends React.Component {
     this.setState({ characterDay: [] })
     this.setState({ game: false })
     this.setState({ squadUp: false })
+    this.setState({ showComics: false })
+    this.setState({ comicPage: [] })
+    this.setState({ userCharacters: [] })
   }
 
   fetchHelperHandler = number => {
@@ -281,6 +304,9 @@ class App extends React.Component {
     this.setState({ squadUp: false })
     this.setState({ comicDay: [] })
     this.setState({ characterDay: [] })
+    this.setState({ showComics: false })
+    this.setState({ comicPage: [] })
+    this.setState({ userCharacters: [] })
   }
 
   render() {
@@ -289,9 +315,9 @@ class App extends React.Component {
     // console.log(this.state.showCharacters)
     // console.log(this.state.characterDay)
     // console.log(this.state.showComics)
-    console.log("characters:", this.state.allUserCharacters)
+    // console.log("characters:", this.state.allUserCharacters)
     // console.log("state user:", this.state.user)
-    // console.log("userCharacters STATE:", this.state.userCharacters)
+    console.log("userCharacters STATE:", this.state.userCharacters)
     return (
       <div className="App">
         {/* <div className="title">

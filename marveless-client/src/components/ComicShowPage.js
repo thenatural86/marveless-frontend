@@ -23,13 +23,13 @@ const ComicShowPage = props => {
       </div>
       <div>
         <div className="comic-characters">
-          Characters: {characters.join(", ")}
+          CHARACTERS: {characters.join(", ")}
         </div>
         <br />
-        <div className="comic-creators">Creators: {creators}</div>
+        <div className="comic-creators">CREATORS: {creators}</div>
         <br />
         <div className="comic-description">
-          Synopsis: {props.comic.description}
+          SYNOPSIS: {props.comic.description}
         </div>
       </div>
     </div>

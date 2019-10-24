@@ -2,8 +2,19 @@ import React from "react"
 import CharacterCard from "../components/CharacterCard"
 import SearchForm from "../components/SearchForm"
 
+function shuffle(array) {
+  const _array = array.slice(0)
+  for (let i = 0; i < array.length - 1; i++) {
+    let randomIndex = Math.floor(Math.random() * (i + 1))
+    let temp = _array[i]
+    _array[i] = _array[randomIndex]
+    _array[randomIndex] = temp
+  }
+  return _array
+}
+
 class CharacterContainer extends React.Component {
-  state = { characters: [], searchTerm: "" }
+  state = { characters: [], searchTerm: "", shuffle: false }
 
   componentDidMount() {
     fetch("http://localhost:3000/api/v1/characters")
@@ -26,8 +37,14 @@ class CharacterContainer extends React.Component {
     )
   }
 
+  shufflePeopleHandler = () => {
+    console.log("shuffle")
+    this.setState({ characters: shuffle(this.state.characters) })
+  }
+
   render() {
-    // console.log(this.props)
+    console.log(shuffle(this.state.characters))
+    console.log(this.state.characters)
     let characters = this.filterCharacterList().map(character => {
       return (
         <CharacterCard
@@ -46,8 +63,11 @@ class CharacterContainer extends React.Component {
         <SearchForm
           searchTerm={this.state.searchTerm}
           changeHandler={this.changeHandler}
-          // submitHandler={props.submitHandler}
+          clickHandler={this.shufflePeopleHandler}
         />
+        {/* <button className="shuffle-button" onClick={this.shufflePeopleHandler}>
+          Shuffle
+        </button> */}
         <div>
           <div
             id="character-container"

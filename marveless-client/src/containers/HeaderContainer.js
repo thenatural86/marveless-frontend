@@ -3,7 +3,7 @@ import React from "react"
 const HeaderContainer = props => {
   // console.log(props)
   return (
-    <div>
+    <div className="header">
       {/* <div className="logoff"></div> */}
       <button onClick={props.goToCharacters}>Home</button>
       {/* <button onClick={props.goHome}>Home</button> */}

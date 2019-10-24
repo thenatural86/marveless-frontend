@@ -1,113 +1,77 @@
-import React, { PureComponent } from "react"
-import GameHeader from "./GameHeader"
-import GameCard from "./GameCard"
-import GameOver from "./GameOver"
+import React, { useState, useEffect } from "react"
+import initializeDeck from "./Deck"
+import Board from "./board/Board"
 
-import "./styles/main.css"
+function GameApp() {
+  const [cards, setCards] = useState([])
+  const [flipped, setFlipped] = useState([])
+  const [dimension, setDimension] = useState(400)
+  const [solved, setSolved] = useState([])
+  const [disabled, setDisabled] = useState(false)
 
-class GameApp extends PureComponent {
-  state = {
-    isFlipped: Array(16).fill(false),
-    shuffledCard: GameApp.duplicateCard().sort(() => Math.random() - 0.5),
-    clickCount: 1,
-    prevSelectedCard: -1,
-    prevCardId: -1
-  }
+  useEffect(() => {
+    resizeBoard()
+    setCards(initializeDeck())
+  }, [])
 
-  static duplicateCard = () => {
-    return [0, 1, 2, 3, 4, 5, 6, 7].reduce(
-      (preValue, current, index, array) => {
-        return preValue.concat([current, current])
-      },
-      []
-    )
-  }
+  useEffect(() => {
+    const resizeListener = window.addEventListener("resize", resizeBoard)
+    return () => window.removeEventListener("resize", resizeListener)
+  })
 
-  handleClick = event => {
-    event.preventDefault()
-    const cardId = event.target.id
-    const newFlipps = this.state.isFlipped.slice()
-    this.setState({
-      prevSelectedCard: this.state.shuffledCard[cardId],
-      prevCardId: cardId
-    })
-
-    if (newFlipps[cardId] === false) {
-      newFlipps[cardId] = !newFlipps[cardId]
-      this.setState(prevState => ({
-        isFlipped: newFlipps,
-        clickCount: this.state.clickCount + 1
-      }))
-
-      if (this.state.clickCount === 2) {
-        this.setState({ clickCount: 1 })
-        const prevCardId = this.state.prevCardId
-        const newCard = this.state.shuffledCard[cardId]
-        const previousCard = this.state.prevSelectedCard
-
-        this.isCardMatch(previousCard, newCard, prevCardId, cardId)
+  const handleClick = id => {
+    setDisabled(true)
+    if (flipped.length === 0) {
+      setFlipped([id])
+      setDisabled(false)
+    } else {
+      if (sameCardClicked(id)) return
+      setFlipped([flipped[0], id])
+      if (isMatch(id)) {
+        setSolved([...solved, flipped[0], id])
+        resetCards()
+      } else {
+        setTimeout(resetCards, 1500)
       }
     }
   }
 
-  isCardMatch = (card1, card2, card1Id, card2Id) => {
-    if (card1 === card2) {
-      const hideCard = this.state.shuffledCard.slice()
-      hideCard[card1Id] = -1
-      hideCard[card2Id] = -1
-      setTimeout(() => {
-        this.setState(prevState => ({
-          shuffledCard: hideCard
-        }))
-      }, 1500)
-    } else {
-      const flipBack = this.state.isFlipped.slice()
-      flipBack[card1Id] = false
-      flipBack[card2Id] = false
-      setTimeout(() => {
-        this.setState(prevState => ({ isFlipped: flipBack }))
-      }, 1500)
-    }
+  const resetCards = () => {
+    setFlipped([])
+    setDisabled(false)
+  }
+  const sameCardClicked = id => flipped.includes(id)
+
+  const isMatch = id => {
+    const clickedCard = cards.find(card => card.id === id)
+    const flippedCard = cards.find(card => flipped[0] === card.id)
+    return flippedCard.type === clickedCard.type
   }
 
-  restartGame = () => {
-    this.setState({
-      isFlipped: Array(16).fill(false),
-      shuffledCard: GameApp.duplicateCard().sort(() => Math.random() - 0.5),
-      clickCount: 1,
-      prevSelectedCard: -1,
-      prevCardId: -1
-    })
-  }
-
-  isGameOver = () => {
-    return this.state.isFlipped.every(
-      (element, index, array) => element !== false
+  const resizeBoard = () => {
+    setDimension(
+      Math.min(
+        document.documentElement.clientWidth,
+        document.documentElement.clientHeight
+      )
     )
   }
 
-  render() {
-    return (
+  return (
+    <div className="GameApp">
       <div>
-        <GameHeader restartGame={this.restartGame} />
-        {this.isGameOver() ? (
-          <GameOver restartGame={this.restartGame} />
-        ) : (
-          <div className="grid-container">
-            {this.state.shuffledCard.map((cardNumber, index) => (
-              <GameCard
-                key={index}
-                id={index}
-                cardNumber={cardNumber}
-                isFlipped={this.state.isFlipped[index]}
-                handleClick={this.handleClick}
-              />
-            ))}
-          </div>
-        )}
+        {/* <h2>Can You remember where the cards are?</h2> */}
+        <Board
+          dimension={dimension}
+          cards={cards}
+          flipped={flipped}
+          handleClick={handleClick}
+          disabled={disabled}
+          solved={solved}
+        />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default GameApp
