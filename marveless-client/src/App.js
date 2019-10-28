@@ -124,7 +124,6 @@ class App extends React.Component {
   }
   // ComicCard CallBack
   comicClickHandler = comicObj => {
-    console.log("heloo")
     if (!this.state.comicPage.includes(comicObj)) {
       this.setState({ comicPage: [comicObj] })
       this.setState({ showComics: !this.state.showComics })
@@ -320,9 +319,6 @@ class App extends React.Component {
     console.log("userCharacters STATE:", this.state.userCharacters)
     return (
       <div className="App">
-        {/* <div className="title">
-          <h1>MarveLess</h1>
-        </div> */}
         <div className="header-container">
           <HeaderContainer
             user={this.state.user}
@@ -345,8 +341,6 @@ class App extends React.Component {
             path="/login"
             render={() => <Login loginUser={this.loginUser} />}
           />
-          {/* {this.state.showCharacters ? (): null} */}
-
           <Route
             path="/characters"
             render={routerProps => {
@@ -406,7 +400,6 @@ class App extends React.Component {
 
         {this.state.squadUp ? (
           <AllUserCharactersContainer
-            // squadUp={this.state.squadUp}
             user={this.state.user}
             allUserCharacters={this.state.allUserCharacters}
             squadDown={this.squadDown}

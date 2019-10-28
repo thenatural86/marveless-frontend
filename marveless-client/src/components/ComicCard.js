@@ -1,7 +1,6 @@
 import React from "react"
 
 const ComicCard = props => {
-  // console.log(props.comic)
   return (
     <div className="comic-card">
       <div className="comic-image">

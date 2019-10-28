@@ -27,7 +27,6 @@ class CharacterContainer extends React.Component {
 
   // SearchForm CallBack
   changeHandler = e => {
-    console.log("change")
     this.setState({ searchTerm: e.target.value })
   }
 
@@ -38,13 +37,10 @@ class CharacterContainer extends React.Component {
   }
 
   shufflePeopleHandler = () => {
-    console.log("shuffle")
     this.setState({ characters: shuffle(this.state.characters) })
   }
 
   render() {
-    console.log(shuffle(this.state.characters))
-    console.log(this.state.characters)
     let characters = this.filterCharacterList().map(character => {
       return (
         <CharacterCard
@@ -58,22 +54,13 @@ class CharacterContainer extends React.Component {
     })
     return (
       <div>
-        {/* className="CharacterSearchAndContainer" */}
-        {/* <h1>Characters</h1> */}
         <SearchForm
           searchTerm={this.state.searchTerm}
           changeHandler={this.changeHandler}
           clickHandler={this.shufflePeopleHandler}
         />
-        {/* <button className="shuffle-button" onClick={this.shufflePeopleHandler}>
-          Shuffle
-        </button> */}
         <div>
-          <div
-            id="character-container"
-            // className="character-container"
-            className="fadeIn"
-          >
+          <div id="character-container" className="fadeIn">
             {characters}
           </div>
         </div>

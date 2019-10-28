@@ -13,12 +13,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:300,400,700&display=swap');
 
-/* 
 
-
-/* Globals */
-/* Globals */
-/* Globals */
 body {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #0f4f85;
@@ -40,27 +35,12 @@ a:visited {
   transition: all 0.2s;
 }
 
-/* img:hover,
-img:active {
-  color: white;
-  background-color: #ED462F;
-  background-color: lightblue;
-  box-shadow: 0 1rem 2rem rgba(black, .4);
-  transform: rotate(1deg) scale(1.1);
-  padding: 2px;
-  -webkit-transform: rotate(4deg) scale(1.3);
-} */
-
-
-
 /* ************************************************************************************/
 
 .header-container {
   background: #151515;
-  /* margin: auto; */
   width: 100%;
   height: 70px;
-  /* text-align: center; */
 }
 
 .header button {
@@ -69,30 +49,25 @@ img:active {
   width: 200px;
   margin-top: 15px;
   border: 10px solid #151515;
-  /* justify-content: space-around; */
 }
 
 #character-container {
   display: flex;
-  /* flex-direction: row; */
   flex-wrap: wrap;
   justify-content: space-around;
   border: 15px solid black;
   overflow: scroll;
   align-items: center;
   align-content: flex-start;
-  right: 400px;
-  /* margin: 10px; */
+  right: -150px;
   position: absolute;
   height: 91.8%;
   width: 380px;
-  margin-right: 1140px;
+  margin-right: 1210px;
   visibility: hidden;
 }
 
 #comic-day-container {
-  /* background-color: #fe5652; */
-
   visibility: hidden;
 }
 
@@ -105,23 +80,16 @@ img:active {
   flex-flow: wrap;
   flex-direction: row;
   justify-content: space-around;
-  /* border: 5px solid black; */
   width: 60%;
-  height: 820px;
+  height: 728px;
   overflow: scroll;
   margin-left: 600px;
-  /* align-items: center;
-  align-content: space-between; */
-  /* margin: 10px; */
-  /* margin-top: 40px; */
-  /* position: relative; */
 }
 
 .comic-container-close {
   position: absolute;
   right: 5px;
   top: 5px;
-  /* z-index: 2; */
 }
 
 .character-container-close {
@@ -136,7 +104,6 @@ img:active {
   justify-content: space-evenly;
   width: 35em;
   height: auto;
-  /* overflow: scroll; */
   align-items: center;
   align-content: space-between;
   margin-left: 600px;
@@ -145,7 +112,6 @@ img:active {
 }
 
 .comic-showpage-text {
-  /* color: red; */
   padding: 10px;
   padding-bottom: 10px;
 }
@@ -163,15 +129,13 @@ img:active {
   height: 23em;
   overflow: scroll;
   align-items: center;
-  /* align-content: space-between; */
+
   margin-top: 10px;
   margin-left: 800px;
   background: peachpuff;
   box-shadow: 5px 10px 8px black;
 
 }
-
-.added-character-container {}
 
 #all-user-character {
   display: flex;
@@ -182,9 +146,6 @@ img:active {
   width: 45%;
   height: 500px;
   overflow: scroll;
-  /* align-items: center; */
-  /* align-content: center; */
-  /* margin: auto; */
   margin-left: 650px;
   visibility: hidden;
 }
@@ -210,10 +171,6 @@ img:active {
   visibility: hidden;
 }
 
-.character-day-char {
-  /* margin-right: 60px; */
-}
-
 .character-day-container-button {
   margin-bottom: 360px;
   margin-right: 100px;
@@ -224,13 +181,21 @@ img:active {
   flex-flow: wrap;
   justify-content: space-evenly;
   width: 35em;
-  height: 42em;
+  height: 726px;
   overflow: scroll;
   align-items: center;
   align-content: space-between;
-  margin-left: 600px;
+  margin-left: 580px;
   box-shadow: 5px 10px 8px black;
   background-color: deeppink;
+}
+
+.comic-day-text {
+  padding: 10px;
+  padding-bottom: 10px;
+
+  font-weight: bold;
+  text-align: left;
 }
 
 .comic-day-container-button {
@@ -238,28 +203,17 @@ img:active {
 }
 
 .character-card {
-  /* border: 1px solid rgb(241, 202, 202); */
   border-radius: 2px;
-  /* /* height: 10%; */
-  /* width: 54% */
 }
 
 .comic-card {
-  /* border: 1px solid rgb(241, 202, 202); */
   border-radius: 2px;
   cursor: pointer;
   box-shadow: 5px 10px 8px black;
   margin-bottom: 25px;
-  /* height: 10%;
-  width: 30% */
 }
 
 .all-user-character-card {
-  /* display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: space-evenly; */
-  /* border: 1px solid rgb(241, 202, 202); */
   border-radius: 2px;
   cursor: pointer;
   width: 168px
@@ -277,8 +231,6 @@ img:active {
   background: black;
   color: white;
   width: 300px;
-  /* margin-left: 102px; */
-  /* text-align: center; */
 }
 
 .title {
@@ -289,9 +241,6 @@ img:active {
   margin: auto;
   text-align: center;
   align-content: center;
-  /* margin-top: 10px; */
-  /* vertical-align: middle */
-
 }
 
 .center {
@@ -323,16 +272,8 @@ img:active {
 
 .grid-container {
   perspective: 1000px;
-
   display: grid;
-  /* background-color: pink; */
-  /* border: 10px solid black; */
-  /* grid-gap: 1px; */
   grid-template-columns: auto auto auto auto;
-  /* padding: 10px 10px 10px 10px; */
-  /* width: 700px; */
-  /* height: 600px */
-
 }
 
 #welcomeVideo {
@@ -356,23 +297,32 @@ img:active {
   z-index: -1
 }
 
-/* 
-.ok {
-  position: relative;
-  z-index: 9;
-  margin-top: 40px;
-} */
-
-input.login {
-  /* background: hotpink; */
+input.login,
+input.signup {
   height: 40px;
-  width: 400px
+  width: 400px;
+  font-size: 20px
+}
+
+.signup {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input.signup-button {
+  color: blue;
+  font-size: 400px
 }
 
 .login-button {
-  /* color: blue; */
   font-size: 30px;
   background: white;
+}
+
+.shuffle-button {
+  color: blue;
+  border-radius: 1px;
 }
 
 

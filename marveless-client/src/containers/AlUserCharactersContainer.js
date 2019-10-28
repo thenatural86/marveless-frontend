@@ -2,7 +2,6 @@ import React from "react"
 import AllUserCharacterCard from "../components/AllUserCharacterCard"
 
 const AllUserCharactersContainer = props => {
-  // console.log(props.allUserCharacters)
   let squad = props.allUserCharacters.map(character => {
     return <AllUserCharacterCard key={character.id} character={character} />
   })
@@ -13,11 +12,8 @@ const AllUserCharactersContainer = props => {
         onClick={props.squadDown}
         className="bigEntrance"
       >
-        {squad}
+        {squad.reverse()}
       </div>
-      {/* <button className="all-user-char-button" onClick={props.squadDown}>
-        Squad Down!
-      </button> */}
     </div>
   )
 }

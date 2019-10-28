@@ -1,9 +1,8 @@
 import React from "react"
 
 const SearchForm = props => {
-  // console.log(props)
   return (
-    <div style={{ marginRight: "1540px", width: "500px" }}>
+    <div style={{ marginRight: "1060px", width: "500px" }}>
       <input
         style={{ width: "220px" }}
         type="text"
@@ -17,7 +16,7 @@ const SearchForm = props => {
         className="shuffle-button"
         onClick={props.clickHandler}
       >
-        shuffle
+        Shuffle
       </button>
     </div>
   )

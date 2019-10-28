@@ -2,7 +2,6 @@ import React from "react"
 import ComicShowPage from "../components/ComicShowPage"
 
 const ComicShowPageContainer = props => {
-  // console.log(props)
   let comicShowPageCards = props.comicPage.map(comic => {
     return (
       <ComicShowPage

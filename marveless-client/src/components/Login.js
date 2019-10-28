@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
             borderRadius: "15px"
           }}
         >
-          MarveLess
+          MARVELESS
         </h1>
         <br />
         <form onSubmit={this.submitHandler}>
@@ -58,16 +58,7 @@ class LoginForm extends React.Component {
           />
         </form>
 
-        <div>
-          {/* <video
-            autoPlay
-            muted
-            loop
-            id="welcomeVideo"
-            src="https://media.giphy.com/media/9tZc9Mzo9K0yOYx38U/giphy.gif"
-            type="video/mp4"
-          /> */}
-        </div>
+        <div></div>
         <div className="background"></div>
       </div>
     )

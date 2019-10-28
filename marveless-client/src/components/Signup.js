@@ -15,23 +15,44 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="center">
-        <h1>Signup Form</h1>
+      <div>
+        <h1
+          style={{
+            fontSize: "50px",
+            color: "white",
+            background: "red",
+            width: "400px",
+            marginTop: "30px",
+            borderRadius: "15px"
+          }}
+        >
+          Signup
+        </h1>
         <form onSubmit={this.submitHandler}>
           <input
+            className="signup"
             type="text"
             name="username"
+            placeholder="username"
             value={this.state.username}
             onChange={this.changeHandler}
           />
           <input
+            className="signup"
             type="text"
             name="password"
+            placeholder="password"
             value={this.state.password}
             onChange={this.changeHandler}
           />
-          <input type="submit" value="signup" />
+          <input
+            className="signup-button"
+            type="submit"
+            value="signup"
+            style={{ width: "400px" }}
+          />
         </form>
+        <div className="background"></div>
       </div>
     )
   }

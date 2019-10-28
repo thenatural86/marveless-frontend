@@ -2,7 +2,6 @@ import React from "react"
 import CharacterCard from "../components/CharacterCard"
 
 const CharacterOfTheDayContainer = props => {
-  console.log(props)
   let char = props.characterDay.map(character => {
     return (
       <CharacterCard

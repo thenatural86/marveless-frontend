@@ -60,7 +60,6 @@ function GameApp() {
   return (
     <div className="GameApp">
       <div>
-        {/* <h2>Can You remember where the cards are?</h2> */}
         <Board
           dimension={dimension}
           cards={cards}
