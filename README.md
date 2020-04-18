@@ -1,7 +1,7 @@
 # Marveless-Frontend
 Marveless is a interactive website that allows a user to learn more about their favorite Marvel characters and comics or perhaps discover new favorite.
 ## Motivation
-As a life long fan of the Marvel Comics and more recently a fan of the Marvel Cinemtic Universe, when I learned that a Marvel API existed I jumped at the opportunity to build something that could demostrate my love for the Marvel brand as well as be an app that others could use to learn more about the Marvel universe.
+As a life long fan of the Marvel Comics and more recently a fan of the Marvel Cinematic Universe, when I learned that a Marvel API existed I jumped at the opportunity to build something that could demonstrate my love for the Marvel brand as well as be an app that others could use to learn more about the Marvel universe.
 ## Build Status
 Complete
 ## Tech/Frameworks Used
